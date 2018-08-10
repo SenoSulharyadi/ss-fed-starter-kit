@@ -22,5 +22,8 @@
 	"bugs": {
 		"url": "https://github.com/SenoSulharyadi/ss-webpack-starter-kit/issues"
 	},
-	"homepage": "https://github.com/SenoSulharyadi/ss-webpack-starter-kit#readme"
+	"homepage": "https://github.com/SenoSulharyadi/ss-webpack-starter-kit#readme",
+	"devDependencies": {
+		"webpack": "^4.16.5"
+	}
 }
