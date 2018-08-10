@@ -1,0 +1,26 @@
+{
+	"name": "webpack-test",
+	"version": "1.0.0",
+	"description": "Seno Sulharyadi Front End kit",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SenoSulharyadi/ss-webpack-starter-kit.git"
+	},
+	"keywords": [
+		"webpack",
+		"front-end",
+		"frontend",
+		"starter",
+		"kit"
+	],
+	"author": "Seno Sulharyadi",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/SenoSulharyadi/ss-webpack-starter-kit/issues"
+	},
+	"homepage": "https://github.com/SenoSulharyadi/ss-webpack-starter-kit#readme"
+}
