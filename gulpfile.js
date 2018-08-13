@@ -40,5 +40,5 @@ gulp.task('server', ['markup', 'styles'], function(){
 	});
 
 	gulp.watch(_.src + '/sass/**/*.sass', ['styles']);
-	gulp.watch(_.src + '/views/**/!(_)*.pug', ['markup-watch']);
+	gulp.watch(_.src + '/views/**/*.pug', ['markup-watch']);
 });
