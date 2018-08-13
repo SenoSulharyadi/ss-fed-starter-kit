@@ -1,9 +1,11 @@
 var gulp = require('gulp'),
-	bs = require('browser-sync').create(),
+
 	$ = require('gulp-load-plugins')({
 		pattern: '*',
 		lazy: true
 	}),
+
+	bs = $.browserSync.create(),
 
 	_ = {
 		src: 'src',
