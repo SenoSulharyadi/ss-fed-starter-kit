@@ -9,7 +9,8 @@ var gulp = require('gulp'),
 
 	_ = {
 		src: 'src',
-		build: 'build'
+		build: 'build',
+		dist: 'dist'
 	};
 
 
@@ -17,7 +18,7 @@ var gulp = require('gulp'),
 // -----------
 gulp.task('styles', function(){
 	return gulp.src(_.src + '/sass/**/*.sass')
-		.pipe($.sass().on('error', $.sass.logError))
+		.pipe($.sass({ sourceMap: true }).on('error', $.sass.logError))
 		.pipe(gulp.dest(_.build + '/css'))
 		.pipe(bs.stream());
 });
@@ -27,9 +28,7 @@ gulp.task('styles', function(){
 // -----------
 gulp.task('markup', function(){
 	return gulp.src(_.src + '/views/**/!(_)*.pug')
-	.pipe($.pug({
-		pretty: true
-	}))
+	.pipe($.pug())
 	.pipe(gulp.dest(_.build));
 });
 
@@ -54,7 +53,7 @@ gulp.task('assets', function() {
 
 // SERVER & WATCH
 // -----------
-gulp.task('server', ['markup', 'styles'], function(){
+gulp.task('server', ['markup', 'styles', 'assets'], function(){
 	bs.init({
 		server: _.build
 	});
@@ -67,8 +66,35 @@ gulp.task('server', ['markup', 'styles'], function(){
 
 // CLEAN
 // -----------
-gulp.task('clean', function() {
+gulp.task('clean-build', function() {
 	return gulp.src( _.build, {read: false})
 		.pipe($.clean());
 });
 
+gulp.task('clean-dist', function() {
+	return gulp.src( _.dist, {read: false})
+		.pipe($.clean());
+});
+
+
+// BUILD
+// ---------
+gulp.task('build-styles', function(){
+	return gulp.src(_.src + '/sass/**/*.sass')
+		.pipe($.sass({ outputStyle: 'compressed' }).on('error', $.sass.logError))
+		.pipe(gulp.dest(_.dist + '/css'));
+});
+
+gulp.task('build-markup', function(){
+	return gulp.src(_.src + '/views/**/!(_)*.pug')
+	.pipe($.pug())
+	.pipe(gulp.dest(_.dist));
+});
+
+gulp.task('build-assets', function() {
+	return gulp.src( _.src + '/images/**/*')
+		.pipe($.imagemin())
+		.pipe(gulp.dest(_.dist + '/images'));
+});
+
+gulp.task('build', ['build-styles', 'build-markup', 'build-assets']);
