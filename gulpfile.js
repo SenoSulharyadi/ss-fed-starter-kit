@@ -53,7 +53,7 @@ gulp.task('assets', function() {
 
 // SERVER & WATCH
 // -----------
-gulp.task('server', ['markup', 'styles', 'assets'], function(){
+gulp.task('watch', ['markup', 'styles', 'assets'], function(){
 	bs.init({
 		server: _.build
 	});
