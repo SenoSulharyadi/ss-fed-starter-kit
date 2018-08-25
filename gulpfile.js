@@ -44,6 +44,21 @@ gulp.task('markup-watch', ['markup'], function(done){
 
 // IMAGES
 // -----------
+
+gulp.task('js', function() {
+	return gulp.src( _.src + '/js/**/*.js')
+	.pipe($.uglify())
+	.pipe(gulp.dest(_.build + '/js'));
+});
+
+gulp.task('js-watch', ['js'], function(done){
+	bs.reload();
+	done();
+});
+
+
+// IMAGES
+// -----------
 gulp.task('assets', function() {
 	return gulp.src( _.src + '/images/**/*')
 		.pipe($.imagemin())
@@ -53,13 +68,15 @@ gulp.task('assets', function() {
 
 // SERVER & WATCH
 // -----------
-gulp.task('watch', ['markup', 'styles', 'assets'], function(){
+gulp.task('watch', ['markup', 'styles', 'assets', 'js'], function(){
 	bs.init({
-		server: _.build
+		server: _.build,
+		port: 8080
 	});
 
 	gulp.watch(_.src + '/sass/**/*.sass', ['styles']);
 	gulp.watch(_.src + '/views/**/*.pug', ['markup-watch']);
+	gulp.watch(_.src + '/js/**/*.js', ['js-watch']);
 	gulp.watch(_.src + '/images/**/*', ['assets']);
 });
 
