@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 // STYLES
 // -----------
 gulp.task('styles', function(){
-	return gulp.src(_.src + '/sass/**/*.sass')
+	return gulp.src(_.src + '/sass/**/*.{sass, scss}')
 		.pipe($.sass({ sourceMap: true }).on('error', $.sass.logError))
 		.pipe(gulp.dest(_.build + '/css'))
 		.pipe(bs.stream());
@@ -42,9 +42,8 @@ gulp.task('markup-watch', ['markup'], function(done){
 });
 
 
-// IMAGES
+// JS
 // -----------
-
 gulp.task('js', function() {
 	return gulp.src( _.src + '/js/**/*.js')
 	.pipe($.uglify())
@@ -57,12 +56,18 @@ gulp.task('js-watch', ['js'], function(done){
 });
 
 
-// IMAGES
+// ASSETS
 // -----------
 gulp.task('assets', function() {
 	return gulp.src( _.src + '/images/**/*')
 		.pipe($.imagemin())
 		.pipe(gulp.dest(_.build + '/images'));
+});
+
+gulp.task('fonts', function() {
+	return gulp
+		.src(_.src + '/fonts/*')
+		.pipe(gulp.dest(_.build + '/fonts'));
 });
 
 
@@ -74,10 +79,21 @@ gulp.task('watch', ['markup', 'styles', 'assets', 'js'], function(){
 		port: 8080
 	});
 
-	gulp.watch(_.src + '/sass/**/*.sass', ['styles']);
-	gulp.watch(_.src + '/views/**/*.pug', ['markup-watch']);
-	gulp.watch(_.src + '/js/**/*.js', ['js-watch']);
-	gulp.watch(_.src + '/images/**/*', ['assets']);
+	$.watch(_.src + '/sass/**/*.{sass, scss}', function() {
+		gulp.start('styles');
+	});
+
+	$.watch(_.src + '/views/**/*.pug', function() {
+		gulp.start('markup-watch');
+	});
+
+	$.watch(_.src + '/js/**/*.js', function() {
+		gulp.start('js-watch');
+	});
+
+	$.watch(_.src + '/images/**/*', function() {
+		gulp.start('assets');
+	});
 });
 
 

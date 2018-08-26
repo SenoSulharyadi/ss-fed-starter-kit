@@ -30,7 +30,6 @@
 		"gulp-pug": "^4.0.1",
 		"gulp-sass": "^4.0.1",
 		"gulp-uglify": "^3.0.1",
-		"vue": "^2.5.17",
-		"vue-cli": "^2.9.6"
+		"gulp-watch": "^5.0.1"
 	}
 }
