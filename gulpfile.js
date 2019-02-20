@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 // -----------
 gulp.task('styles', function() {
     return gulp
-        .src(_.src + '/sass/**/*.{sass, scss}')
+        .src(_.src + '/sass/**/*.scss')
         .pipe($.sass({ sourceMap: true }).on('error', $.sass.logError))
         .pipe(gulp.dest(_.build + '/css'))
         .pipe(bs.stream());
@@ -70,7 +70,7 @@ gulp.task('watch', ['markup', 'styles', 'assets', 'js'], function() {
         port: 8080
     });
 
-    $.watch(_.src + '/sass/**/*.sass', function() {
+    $.watch(_.src + '/sass/**/*.scss', function() {
         gulp.start('styles');
     });
 
