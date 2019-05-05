@@ -24,18 +24,16 @@
 	"devDependencies": {
 		"browser-sync": "^2.24.6",
 		"bs-html-injector": "^3.0.3",
-		"gulp": "^3.9.1",
 		"gulp-clean": "^0.4.0",
 		"gulp-imagemin": "^4.1.0",
 		"gulp-load-plugins": "^1.5.0",
 		"gulp-nunjucks-render": "^2.2.2",
 		"gulp-sass": "^4.0.1",
 		"gulp-uglify": "^3.0.1",
-		"gulp-watch": "^5.0.1",
-		"vue": "^2.5.17",
-		"vue-cli": "^2.9.6"
+		"gulp-watch": "^5.0.1"
 	},
 	"dependencies": {
-		"@hint/configuration-development": "^1.1.1"
+		"@hint/configuration-development": "^1.1.1",
+		"gulp": "^3.9.1"
 	}
 }
