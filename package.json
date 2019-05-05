@@ -18,9 +18,9 @@
 	"author": "Seno Sulharyadi",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://SenoSulharyadi@bitbucket.org/SenoSulharyadi/immigranz.git/issues"
+		"url": "https://github.com/SenoSulharyadi/ss-fed-starter-kit/issues"
 	},
-	"homepage": "https://SenoSulharyadi@bitbucket.org/SenoSulharyadi/immigranz.git#readme",
+	"homepage": "https://github.com/SenoSulharyadi/ss-fed-starter-kit#readme",
 	"devDependencies": {
 		"browser-sync": "^2.24.6",
 		"bs-html-injector": "^3.0.3",
