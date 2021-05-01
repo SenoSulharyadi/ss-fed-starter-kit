@@ -7,6 +7,6 @@ npm i
 
 ## Run local server
 ```
-gulp watch
+gulp
 ```
 

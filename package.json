@@ -1,7 +1,8 @@
 {
+	"type": "module",
 	"name": "seno-starter-test",
 	"version": "1.0.1",
-	"description": "Seno Sulharyadi Front End kit",
+	"description": "Amarto Seno Front End kit",
 	"main": "index.js",
 	"scripts": {},
 	"repository": {
@@ -15,7 +16,7 @@
 		"starter",
 		"kit"
 	],
-	"author": "Seno Sulharyadi",
+	"author": "Amarto Seno",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/SenoSulharyadi/ss-fed-starter-kit/issues"
@@ -23,17 +24,13 @@
 	"homepage": "https://github.com/SenoSulharyadi/ss-fed-starter-kit#readme",
 	"devDependencies": {
 		"browser-sync": "^2.24.6",
-		"bs-html-injector": "^3.0.3",
-		"gulp-clean": "^0.4.0",
+		"gulp": "^4.0.2",
 		"gulp-imagemin": "^4.1.0",
-		"gulp-load-plugins": "^1.5.0",
 		"gulp-nunjucks-render": "^2.2.2",
 		"gulp-sass": "^4.0.1",
-		"gulp-uglify": "^3.0.1",
-		"gulp-watch": "^5.0.1"
+		"gulp-uglify": "^3.0.1"
 	},
 	"dependencies": {
-		"@hint/configuration-development": "^1.1.1",
-		"gulp": "^3.9.1"
+		"@hint/configuration-development": "^1.1.1"
 	}
 }

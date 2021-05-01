@@ -1,138 +1,81 @@
-var gulp = require('gulp'),
-    $ = require('gulp-load-plugins')({
-        pattern: '*',
-        lazy: true
-    }),
-    bs = $.browserSync.create(),
+import gulp from 'gulp';
+import sass from 'gulp-sass';
+import nunjucksRender from 'gulp-nunjucks-render';
+import uglify from 'gulp-uglify';
+import imagemin from 'gulp-imagemin';
+import browserSync from 'browser-sync';
+const server = browserSync.create(),
     _ = {
         src: 'src',
         build: 'build',
         dist: 'dist'
-    };
+};
 
 // STYLES
 // -----------
-gulp.task('styles', function() {
+function styles() {
     return gulp
         .src(_.src + '/sass/**/*.scss')
-        .pipe($.sass({ sourceMap: true }).on('error', $.sass.logError))
+        .pipe(sass({ sourceMap: true }).on('error', sass.logError))
         .pipe(gulp.dest(_.build + '/css'))
-        .pipe(bs.stream());
-});
+        .pipe(server.stream());
+};
 
 // MARKUP
 // -----------
-gulp.task('markup', function() {
+function markup() {
     return gulp
         .src(_.src + '/views/**/!(_)*.html')
-        .pipe($.nunjucksRender())
+        .pipe(nunjucksRender())
         .pipe(gulp.dest(_.build));
-});
+};
 
 // JS
 // -----------
-gulp.task('js', function() {
+function js() {
     return gulp
         .src(_.src + '/js/**/*.js')
-        .pipe($.uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(_.build + '/js'));
-});
-
-gulp.task('js-watch', ['js'], function(done) {
-    bs.reload();
-    done();
-});
+};
 
 // ASSETS
 // -----------
-gulp.task('assets', function() {
+function assets() {
     return gulp
         .src(_.src + '/images/**/*')
-        .pipe($.imagemin())
+        .pipe(imagemin())
         .pipe(gulp.dest(_.build + '/images'));
-});
+};
 
-gulp.task('fonts', function() {
+function fonts() {
     return gulp.src(_.src + '/fonts/*')
     .pipe(gulp.dest(_.build + '/fonts'))
     .pipe(gulp.dest(_.dist + '/fonts'));
-});
+};
+
+function build(cb) {
+    gulp.series(markup, styles, assets, js, fonts);
+    cb();
+}
+
+function reload(done) {
+    server.reload();
+    done();
+}
+
+function serve(done) {
+    server.init({
+        server: {
+            baseDir: _.build
+        }
+    });
+    done();
+}
 
 // SERVER & WATCH
 // -----------
-gulp.task('watch', ['markup', 'styles', 'assets', 'js'], function() {
-    bs.use($.bsHtmlInjector, {
-        files: _.src + '/views/**/!(_)*.html'
-    });
+const watch = () => gulp.watch(_.src, gulp.series(markup, styles, assets, js, fonts, reload));
 
-    bs.init({
-        server: _.build,
-        port: 8080
-    });
-
-    $.watch(_.src + '/sass/**/*.scss', function() {
-        gulp.start('styles');
-    });
-
-    $.watch(_.src + '/views/**/*.html', function() {
-        gulp.start('markup', $.bsHtmlInjector);
-    });
-
-    $.watch(_.src + '/js/**/*.js', function() {
-        gulp.start('js-watch');
-    });
-
-    $.watch(_.src + '/images/**/*', function() {
-        gulp.start('assets');
-    });
-});
-
-// CLEAN
-// -----------
-gulp.task('clean-build', function() {
-    return gulp.src(_.build, { read: false }).pipe($.clean());
-});
-
-gulp.task('clean-dist', function() {
-    return gulp.src(_.dist, { read: false }).pipe($.clean());
-});
-
-// BUILD
-// ---------
-gulp.task('build-styles', function() {
-    return gulp
-        .src(_.src + '/sass/**/*.sass')
-        .pipe(
-            $.sass({ outputStyle: 'compressed' }).on('error', $.sass.logError)
-        )
-        .pipe(gulp.dest(_.dist + '/css'));
-});
-
-gulp.task('build-markup', function() {
-    return gulp
-        .src(_.src + '/views/**/!(_)*.html')
-        .pipe($.nunjucksRender())
-        .pipe(gulp.dest(_.dist));
-});
-
-gulp.task('build-assets', function() {
-    return gulp
-        .src(_.src + '/images/**/*')
-        .pipe($.imagemin())
-        .pipe(gulp.dest(_.dist + '/images'));
-});
-
-gulp.task('build-js', function() {
-    return gulp
-        .src(_.src + '/js/**/*.js')
-        .pipe($.uglify())
-        .pipe(gulp.dest(_.dist + '/js'));
-});
-
-gulp.task('build', [
-    'build-styles',
-    'build-markup',
-    'build-assets',
-    'build-js',
-    'fonts'
-]);
+const dev = gulp.series(serve, watch);
+export default dev;
