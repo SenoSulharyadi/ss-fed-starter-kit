@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
 module.exports = {
-    mode: 'development',
     entry: {
         main: ['./themes/simple/sass/main.scss']
     },
@@ -17,8 +16,8 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader',
-                    'postcss-loader'
+                    'postcss-loader',
+                    'sass-loader'
                 ],
             }
         ],
