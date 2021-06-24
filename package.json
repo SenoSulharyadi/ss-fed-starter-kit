@@ -1,36 +1,36 @@
 {
-	"type": "module",
-	"name": "seno-starter-test",
-	"version": "1.0.1",
-	"description": "Amarto Seno Front End kit",
-	"main": "index.js",
-	"scripts": {},
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:SenoSulharyadi/ss-fed-starter-kit.git"
-	},
-	"keywords": [
-		"webpack",
-		"front-end",
-		"frontend",
-		"starter",
-		"kit"
-	],
-	"author": "Amarto Seno",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/SenoSulharyadi/ss-fed-starter-kit/issues"
-	},
-	"homepage": "https://github.com/SenoSulharyadi/ss-fed-starter-kit#readme",
-	"devDependencies": {
-		"browser-sync": "^2.24.6",
-		"gulp": "^4.0.2",
-		"gulp-imagemin": "^4.1.0",
-		"gulp-nunjucks-render": "^2.2.2",
-		"gulp-sass": "^4.0.1",
-		"gulp-uglify": "^3.0.1"
-	},
-	"dependencies": {
-		"@hint/configuration-development": "^1.1.1"
-	}
+    "name": "ss-webpack",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "webpack --watch",
+        "build": "webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/s-en-o/toast.git"
+    },
+    "author": "Seno",
+    "license": "ISC",
+    "homepage": "https://github.com/s-en-o/",
+    "browserslist": [
+        "defaults",
+        "maintained node versions"
+    ],
+    "devDependencies": {
+        "autoprefixer": "^9.6.1",
+        "css-loader": "^4.3.0",
+        "fibers": "^5.0.0",
+        "mini-css-extract-plugin": "^1.6.0",
+        "postcss-loader": "^3.0.0",
+        "postcss-pxtorem": "^4.0.1",
+        "sass": "^1.35.1",
+        "sass-loader": "^10.1.1",
+        "webpack": "^4.46.0",
+        "webpack-cli": "^4.7.2",
+        "webpack-fix-style-only-entries": "^0.6.1"
+    },
+    "dependencies": {}
 }
