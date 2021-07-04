@@ -10,11 +10,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/s-en-o/toast.git"
+        "url": "git+https://github.com/s-en-o/ss-fed-starter-kit.git"
     },
-    "author": "Seno",
+    "author": "Amarto Seno",
     "license": "ISC",
-    "homepage": "https://github.com/s-en-o/",
+    "homepage": "https://github.com/s-en-o/ss-fed-starter-kit.git",
     "browserslist": [
         "defaults",
         "maintained node versions"
